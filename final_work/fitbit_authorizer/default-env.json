@@ -5,8 +5,8 @@
                 "binding_name": null,
                 "credentials": {
                     "appName": "FitbitCAPAuthorizer",
-                    "clientId": "22BTDZ",
-                    "clientsecret": "99d9cbaaa77d5aee2d716b510ac7f249",
+                    "clientId": "id",
+                    "clientsecret": "test",
                     "desc": "Fitbit credentials",
                     "expiration": "1hour",
                     "scope": [
