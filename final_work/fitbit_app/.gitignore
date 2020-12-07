@@ -2,6 +2,7 @@
 /dist/
 /.vscode/
 /*-content.zip/ 
+fitbit_app-content.zip
 
 # auto generated wildcard
 final_work/final-work-approuter/.env
