@@ -1,0 +1,66 @@
+_schema-version: "3.2"
+ID: final_work
+version: 0.0.1
+modules:
+  - name: final-work-approuter
+    type: approuter.nodejs
+    path: final-work-approuter
+    requires:
+      - name: final_work_html_repo_runtime
+      - name: uaa_final_work
+    parameters:
+      disk-quota: 256M
+      memory: 256M
+  - name: final_work_ui_deployer
+    type: com.sap.application.content
+    path: .
+    requires:
+      - name: final_work_html_repo_host
+        parameters:
+          content-target: true
+    build-parameters:
+      build-result: resources
+      requires:
+        - artifacts:
+            - fitbit_app-content.zip
+          name: fitbit_app
+          target-path: resources/
+  - name: fitbit_app
+    type: html5
+    path: fitbit_app
+    build-parameters:
+      builder: custom
+      commands:
+        - npm run build
+      supported-platforms: []
+  - name: fitbit_authorizer
+    type: nodejs
+    path: fitbit_authorizer
+    provides:
+      - name: fitbit_authorizer_api
+        properties:
+          url: "${default-url}"
+
+resources:
+  - name: final_work_html_repo_runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+  - name: final_work_html_repo_host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: uaa_final_work
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: final_work-xsuaa-service
+      service-plan: application
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm install

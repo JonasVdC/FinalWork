@@ -1,0 +1,25 @@
+{
+    "name": "fitbit_authorizer",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "engines": {
+        "node": "10.x"
+    },
+    "dependencies": {
+        "@sap/xsenv": "^3.1.0",
+        "@sap/xssec": "^3.0.10",
+        "axios": "^0.21.0",
+        "client-oauth2": "^4.3.3",
+        "express": "^4.17.1",
+        "node-cache": "^5.1.2",
+        "oauth": "^0.9.15",
+        "passport": "^0.4.1",
+        "querystring": "^0.2.0"
+    }
+}

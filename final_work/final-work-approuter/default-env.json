@@ -1,0 +1,76 @@
+{
+    "VCAP_SERVICES": {
+        "xsuaa": [
+            {
+                "name": "final_work-xsuaa-service-local",
+                "instance_name": "final_work-xsuaa-service-local",
+                "label": "xsuaa",
+                "tags": [
+                    "xsuaa",
+                    "endpoint:https://api.cf.eu10.hana.ondemand.com",
+                    "org:f4132480trial",
+                    "space:dev"
+                ],
+                "plan": "application",
+                "credentials": {
+                    "apiurl": "https://api.authentication.eu10.hana.ondemand.com",
+                    "clientid": "sb-final_wokr!t64317",
+                    "clientsecret": "/Ib2bhGVhE51GW8ZobnvDCaEFtk=",
+                    "identityzone": "f4132480trial",
+                    "identityzoneid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                    "sburl": "https://internal-xsuaa.authentication.eu10.hana.ondemand.com",
+                    "service_key_name": "key",
+                    "subaccountid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                    "tenantid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                    "tenantmode": "dedicated",
+                    "uaadomain": "authentication.eu10.hana.ondemand.com",
+                    "url": "https://f4132480trial.authentication.eu10.hana.ondemand.com",
+                    "verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv2xzT2kRPsqNT2AOCYVIFTM3rp0HGKp5gSMQtgm/S6+/eoUIQA7khivem1Na/edB+yc0+lN7bvzufKhozoKx8RicJoQRJcGcm4BpPTUCTo9an01Nf4NTEXf0LzZwxthVTaI7JFCF0HSZh3EAlqZysHZZHlfd0i/B5CZljK+ij5CjGqNlfPzXjPQdzQ8+NE+ub/uC0TKTFw81EZUjoLZBKkTJsJ+XcqQHJR+D7Fg36hBv7wTEqZA3nbFrGGB7AFDEIBvOBJHKzQuE65egVBf68lCZSEc1snoSEDm7B3y1asmJjQxjGAcALZ8R6/rYUs0QUbpIaikIUVeixD6owTRR5wIDAQAB-----END PUBLIC KEY-----",
+                    "xsappname": "final_wokr!t64317",
+                    "zoneid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6"
+                }
+            }
+        ],
+        "html5-apps-repo": [
+            {
+                "name": "final_work_html_repo_runtime",
+                "instance_name": "final_work_html_repo_runtime",
+                "label": "html5-apps-repo",
+                "tags": [
+                    "html5appsrepo",
+                    "html5-apps-repo-rt",
+                    "html5-apps-rt",
+                    "html5-apps-repo-dt",
+                    "html5-apps-dt",
+                    "endpoint:https://api.cf.eu10.hana.ondemand.com",
+                    "org:f4132480trial",
+                    "space:dev"
+                ],
+                "plan": "app-runtime",
+                "credentials": {
+                    "grant_type": "client_credentials",
+                    "sap.cloud.service": "html5-apps-repo-rt",
+                    "service_key_name": "key",
+                    "uaa": {
+                        "apiurl": "https://api.authentication.eu10.hana.ondemand.com",
+                        "clientid": "sb-b0bba44e-c355-461e-b646-6c1de2d6cc65!b64317|html5-apps-repo-uaa!b1685",
+                        "clientsecret": "koH7GDbiTfamuxG4/3WXFu37AsQ=",
+                        "identityzone": "f4132480trial",
+                        "identityzoneid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                        "sburl": "https://internal-xsuaa.authentication.eu10.hana.ondemand.com",
+                        "subaccountid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                        "tenantid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6",
+                        "tenantmode": "dedicated",
+                        "uaadomain": "authentication.eu10.hana.ondemand.com",
+                        "url": "https://f4132480trial.authentication.eu10.hana.ondemand.com",
+                        "verificationkey": "-----BEGIN PUBLIC KEY-----MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv2xzT2kRPsqNT2AOCYVIFTM3rp0HGKp5gSMQtgm/S6+/eoUIQA7khivem1Na/edB+yc0+lN7bvzufKhozoKx8RicJoQRJcGcm4BpPTUCTo9an01Nf4NTEXf0LzZwxthVTaI7JFCF0HSZh3EAlqZysHZZHlfd0i/B5CZljK+ij5CjGqNlfPzXjPQdzQ8+NE+ub/uC0TKTFw81EZUjoLZBKkTJsJ+XcqQHJR+D7Fg36hBv7wTEqZA3nbFrGGB7AFDEIBvOBJHKzQuE65egVBf68lCZSEc1snoSEDm7B3y1asmJjQxjGAcALZ8R6/rYUs0QUbpIaikIUVeixD6owTRR5wIDAQAB-----END PUBLIC KEY-----",
+                        "xsappname": "b0bba44e-c355-461e-b646-6c1de2d6cc65!b64317|html5-apps-repo-uaa!b1685",
+                        "zoneid": "aa6fd3cb-737b-4ddc-8911-f72906d4d0e6"
+                    },
+                    "uri": "https://html5-apps-repo-rt.cfapps.eu10.hana.ondemand.com",
+                    "vendor": "SAP"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+/mta_archives/
+/node_modules/
+fitbit_authorizer/node_modules/
+/resources/
+
+# auto generated wildcard
+final_work/final-work-approuter/.env
+# auto generated wildcard
+final_work/.env
+# auto generated wildcard
+final_work/fitbit_authorizer/.env
+# auto generated wildcard
+final_work/fitbit_app/.env1

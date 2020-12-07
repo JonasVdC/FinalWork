@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/fitbit_authorizer/fitbit.js"
+    },
+    {
+      "type": "node-terminal",
+      "name": "Create JavaScript Debug Terminal",
+      "request": "launch",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "pwa-node",
+      "name": "Run Current File",
+      "request": "launch",
+      "program": "${workspaceFolder}/fitbit_authorizer/fitbit.js"
+    }
+  ]
+}
