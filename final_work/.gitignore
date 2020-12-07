@@ -2,6 +2,7 @@
 /node_modules/
 fitbit_authorizer/node_modules/
 /resources/
+fitbit_authorizer/default-env.json
 
 # auto generated wildcard
 final_work/final-work-approuter/.env
