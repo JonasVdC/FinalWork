@@ -2,12 +2,13 @@ const environment = require('./environment');
 const Fitbit = require('./fitbit');
 const ClientOAuth2 = require('client-oauth2');
 const express = require('express');
+const schedule = require('node-schedule')
 
 
 this.oFitbit = null;
 let app = express();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3002;
 
 
 app.listen(port, async () => {
