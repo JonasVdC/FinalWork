@@ -9,8 +9,7 @@ xsenv.loadEnv();
 // Access the xsuaa and destination service and build the uaa credentials
 const dest_service = xsenv.getServices({ dest: { tag: 'destination' } }).dest;
 const uaa_service = xsenv.getServices({ uaa: { tag: 'xsuaa' } }).uaa;
-console.log(dest_service);
-console.log(uaa_service);
+
 
 const sUaaCredentials = dest_service.clientid + ':' + dest_service.clientsecret;
 
@@ -20,8 +19,9 @@ module.exports = {
     // Single function to retrieve all variables
     getVariables: async function () {
         const uaaAccessToken = await getUaaAccessToken();
-        const aDestinations = await (await getDestinations(uaaAccessToken, ["final_work-authorizer", "FitbitAPI", "FitbitOauth"])).map(oDestination => oDestination.data);
+        const aDestinations = await (await getDestinations(uaaAccessToken, ["final_work-authorizer", "FitbitAPI", "FitbitOauth", "final_work-IOT"])).map(oDestination => oDestination.data);
         const oEnvironmentVariables = getFitbitKeys();
+        oEnvironmentVariables.mqtt = getMQTTValues();
         oEnvironmentVariables.destinations = aDestinations;
         return oEnvironmentVariables;
     },
@@ -82,5 +82,17 @@ function getFitbitKeys() {
         fitbitApiAppName,
         fitbitApiScope,
         fitbitApiExpiration
+    }
+}
+
+function getMQTTValues() {
+    const MqttService = xsenv.getServices({ "user-provided": { instance_name: "MQTT-values" } });
+    const Device = MqttService["user-provided"]["device"];
+    const Sensor = MqttService["user-provided"]["sensor"];
+    const Capability = MqttService["user-provided"]["capability"];
+    return {
+        Device,
+        Sensor,
+        Capability
     }
 }

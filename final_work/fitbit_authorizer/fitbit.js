@@ -8,10 +8,7 @@ module.exports = class Fitbit {
 
     constructor(config) {
         this.config = config;
-        console.log(config.destinations)
         this.fitbitAuth = this.FillFitbitAuth(config);
-
-
         this.accesToken = "INVALID";
         this.userId = "";
     }
@@ -95,11 +92,11 @@ module.exports = class Fitbit {
 
     // Get all the boards
     getHeartrate(req, res) {
-        return axios.get('https://api.fitbit.com/1/user/' + this.userId + '/activities/heart/date/today/1d.json')
+        return axios.get('https://api.fitbit.com/1/user/' + this.userId + '/activities/heart/date/today/1d/1min.json')
 
 
             .then(response => {
-                return res.send(response.data["activities-heart"][0].value);
+                return res.send(response.data["activities-heart"][0].value["heartRateZones"][0].name);
             })
             .catch(error => {
                 console.log(error);

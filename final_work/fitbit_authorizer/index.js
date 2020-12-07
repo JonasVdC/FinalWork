@@ -1,11 +1,13 @@
 const environment = require('./environment');
 const Fitbit = require('./fitbit');
+const Mqtt = require('./Mqtt')
 const ClientOAuth2 = require('client-oauth2');
 const express = require('express');
 const schedule = require('node-schedule')
 
 
 this.oFitbit = null;
+this.oMqtt = null;
 let app = express();
 
 const port = process.env.PORT || 3002;
@@ -17,8 +19,7 @@ app.listen(port, async () => {
     // Get the environment variables
     const oEnvironmentVariables = await environment.getVariables();
     this.oFitbit = new Fitbit(oEnvironmentVariables);
-
-    console.log(this.oFitbit);
+    this.oMqtt = new Mqtt(oEnvironmentVariables);
 });
 
 
@@ -42,7 +43,7 @@ app.get('/getProfile', function (req, res) {
 }.bind(this));
 
 app.get("/getHeartrate", function (req, res) {
-    return this.oFitbit.getHeartrate(req, res)
+    return this.oFitbit.getHeartrate(req, res);
 }.bind(this));
 
 
