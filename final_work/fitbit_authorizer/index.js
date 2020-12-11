@@ -1,6 +1,6 @@
 const environment = require('./environment');
 const Fitbit = require('./fitbit');
-const Mqtt = require('./Mqtt')
+const Mqtt = require('./Mqtt');
 const ClientOAuth2 = require('client-oauth2');
 const express = require('express');
 const schedule = require('node-schedule')
@@ -19,7 +19,7 @@ app.listen(port, async () => {
     // Get the environment variables
     const oEnvironmentVariables = await environment.getVariables();
     this.oFitbit = new Fitbit(oEnvironmentVariables);
-    this.oMqtt = new Mqtt(oEnvironmentVariables);
+
 });
 
 

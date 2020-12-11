@@ -14,21 +14,6 @@ module.exports = class MQTT {
         this.CERTIFICATE_FILE = "certificates/fitbit_certificate.pem";
         this.PASSPHRASE_FILE = "certificates/fitbit_passphrase.txt";
         this.mqttClient = this.connectToMQTT();
-        this.lastData = {
-            OoR: "Out of Range",
-            minutesOoR: 512,
-            FB: "Fat Burn",
-            minutesFB: 46,
-            C: "Cardio",
-            minutesC: 0,
-            P: "Peak",
-            minutesP: 0
-        }
-
-        setInterval(() => {
-            this.lastData = this.generateData()
-            this.sendDataViaMQTT()
-        }, 30000);
     };
 
 
@@ -40,17 +25,6 @@ module.exports = class MQTT {
         let IncomingUrl = this.getIoTCockpitURL();
         let cleanedUrl = IncomingUrl.substr(8);
         return cleanedUrl;
-    };
-
-    generateData() {
-        this.lastData.minutesC = this.lastData.minutesC + this.randomInteger(0, 20);
-        return this.lastData;
-    };
-
-    randomInteger(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     connectToMQTT() {
@@ -78,12 +52,12 @@ module.exports = class MQTT {
         return mqttClient
     };
 
-    sendDataViaMQTT() {
+    sendDataViaMQTT(HRdata) {
         var payload = {
             sensorAlternateId: this.SENSOR_ALTERNATE_ID,
             capabilityAlternateId: this.CAPABILITY_ALTERNATE_ID,
             measures: [
-                this.lastData.OoR, this.lastData.minutesOoR, this.lastData.FB, this.lastData.minutesFB, this.lastData.C, this.lastData.minutesC, this.lastData.P, this.lastData.minutesP
+                HRdata.HeartRateZone1, HRdata.MinutesZone1, HRdata.HeartRateZone2, HRdata.MinutesZone2, HRdata.HeartRateZone3, HRdata.MinutesZone3, HRdata.HeartRateZone4, HRdata.MinutesZone4
             ]
         }
 
@@ -93,7 +67,7 @@ module.exports = class MQTT {
             if (!error) {
                 console.log("Data successfully sent!");
             } else {
-                console.log("An unecpected error occurred:", error);
+                console.log("An unexpected error occurred:", error);
             }
         });
     };

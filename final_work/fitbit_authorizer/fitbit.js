@@ -2,17 +2,18 @@
 const ClientOAuth2 = require('client-oauth2')
 const url = require('url');
 const axios = require('axios');
+const Mqtt = require('./Mqtt');
 
 
 module.exports = class Fitbit {
 
     constructor(config) {
+        this.oMqtt = new Mqtt(config);
         this.config = config;
         this.fitbitAuth = this.FillFitbitAuth(config);
         this.accesToken = "INVALID";
         this.userId = "";
     }
-
     FillFitbitAuth(config) {
         let accesURL = this.getAccessURL();
         let AuthUrl = this.getAuthorizeURL();
@@ -92,15 +93,30 @@ module.exports = class Fitbit {
 
     // Get all the boards
     getHeartrate(req, res) {
-        return axios.get('https://api.fitbit.com/1/user/' + this.userId + '/activities/heart/date/today/1d/1min.json')
+        setInterval(() => {
+            return axios.get('https://api.fitbit.com/1/user/' + this.userId + '/activities/heart/date/today/1d/1min.json')
 
 
-            .then(response => {
-                return res.send(response.data["activities-heart"][0].value["heartRateZones"][0].name);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+                .then(response => {
+                    let HRData = {
+                        HeartRateZone1: response.data["activities-heart"][0].value["heartRateZones"][0].name,
+                        MinutesZone1: response.data["activities-heart"][0].value["heartRateZones"][0].minutes,
+                        HeartRateZone2: response.data["activities-heart"][0].value["heartRateZones"][1].name,
+                        MinutesZone2: response.data["activities-heart"][0].value["heartRateZones"][1].minutes,
+                        HeartRateZone3: response.data["activities-heart"][0].value["heartRateZones"][2].name,
+                        MinutesZone3: response.data["activities-heart"][0].value["heartRateZones"][2].minutes,
+                        HeartRateZone4: response.data["activities-heart"][0].value["heartRateZones"][3].name,
+                        MinutesZone4: response.data["activities-heart"][0].value["heartRateZones"][3].minutes,
+
+
+                    }
+                    this.oMqtt.sendDataViaMQTT(HRData);
+                    return res.send(HRData);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }, 30000);
     }
 
 
